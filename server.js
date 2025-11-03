@@ -318,7 +318,7 @@ app.get('/snsvapi/get-info', async(req, res) => {
                 data: finalData,
                 sessionInfo: {
                     mobileUsed: mobile,
-                    otpFound: foundOTP
+                    otpFound: foundOTP.otp
                 }
             });
         } else {
