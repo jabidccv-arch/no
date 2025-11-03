@@ -121,8 +121,13 @@ async function tryOTP(session, cookies, otp) {
             return otp;
         }
 
-        if (response.status === 200 && response.data.includes('কৃষক নিবন্ধন')) {
-            return otp;
+        // If OTP is correct - returns 200 with HTML form
+        if (response.status === 200 && response.data.includes('কৃষক নিবন্ধন') && response.data.includes('name="name"')) {
+            console.log(`✅ Correct OTP found: ${otp}`);
+            return {
+                otp: otp,
+                html: response.data // Return the HTML form data
+            };
         }
 
         return null;
