@@ -158,14 +158,53 @@ async function fetchFormData(session, cookies) {
     }
 }
 
-function extractFields(html, ids) {
-    const result = {};
-    ids.forEach(field_id => {
-        const regex = new RegExp(`<input[^>]*id="${field_id}"[^>]*value="([^"]*)"`);
-        const match = html.match(regex);
-        result[field_id] = match ? match[1] : "";
-    });
-    return result;
+function extractFields(html) {
+    const $ = cheerio.load(html);
+
+    return {
+        // Basic information
+        contractorName: $('#name').val() || "",
+        fatherName: $('#father').val() || "",
+        motherName: $('#mother').val() || "",
+        
+        // Names in both languages
+        nameEnglish: $('#name').val() || "",
+        nameBangla: $('#nameBn').val() || "",
+        
+        // Gender information
+        gender: $('#gender').val() || "",
+        genderDisplay: $('input[name="gender"]').next('input').val() || "", // Display value
+        
+        nationality: $('#nationality').val() || "",
+        
+        // NID versions
+        nidV1: $('#nidV1').val() || "",
+        nidV2: $('#nidV2').val() || "",
+        nidV3: $('#nidV3').val() || "",
+        
+        // Occupation
+        occupation: $('#occupation').val() || "",
+        
+        // Contact info
+        mobile: $('#mobile').val() || "",
+        
+        // Permanent address (NID address)
+        nidPerDivision: $('#perDivision').val() || "",
+        nidPerDistrict: $('#perDistrict').val() || "",
+        nidPerUpazila: $('#perUpazila').val() || "",
+        nidPerUnion: $('#perUnion').val() || "",
+        nidPerVillage: $('#perVillage').val() || "",
+        nidPerWard: $('#perWard').val() || "",
+        nidPerZipCode: $('#perPostcode').val() || "",
+        nidPerPostOffice: $('#perPostOffice').val() || "",
+        nidPerHolding: $('#perAddressLine1').val() || "",
+        nidPerMouza: "", // Not available in the form
+        
+        
+        // Additional hidden fields
+        status: $('#status').val() || "",
+        locationId: $('#locationId').val() || ""
+    };
 }
 
 function enrichData(contractor_name, result, nid, dob) {
