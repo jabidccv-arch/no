@@ -126,6 +126,7 @@ async function tryOTP(session, cookies, otp) {
             console.log(`✅ Correct OTP found: ${otp}`);
             return {
                 otp: otp,
+                html: response.data
                // Return the HTML form data
             };
         }
