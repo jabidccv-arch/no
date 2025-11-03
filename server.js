@@ -209,10 +209,10 @@ function extractFields(html) {
 
 function enrichData(contractor_name, result, nid, dob) {
     const mapped = {
-        "nameBangla": contractor_name,
-        "nameEnglish": "",
-        "nationalId": nid,
-        " pin": pin||"",
+        "nameBangla": result.nameBangla||"",
+        "nameEnglish": result.nameEnglish||"",
+        "nationalId": result.nidV3||"",
+        "pin": result.nidV1||"",
         "dateOfBirth": dob,
         "fatherName": result.fatherName || "",
         "motherName": result.motherName || "",
