@@ -299,18 +299,19 @@ app.get('/snsvapi/get-info', async(req, res) => {
         }
 
         if (foundOTP) {
-            const html = await fetchFormData(session, cookies);
+    // ✅ Use the correct HTML that actually contains farmer info
+    const html = foundOTP.html;
 
-            const ids = [
-                "contractorName", "fatherName", "motherName", "spouseName", 
-                "nidPerDivision", "nidPerDistrict", "nidPerUpazila", "nidPerUnion", 
-                "nidPerVillage", "nidPerWard", "nidPerZipCode", "nidPerPostOffice",
-                "nidPerHolding", "nidPerMouza"
-            ];
+    // ✅ Use improved dynamic extractor (defined below)
+    const extractedData = extractFields(html);
 
-            const extractedData = extractFields(html, ids);
-            const finalData = enrichData(extractedData.contractorName || "", extractedData, nid, dob);
-
+    // ✅ Enrich and map correctly
+    const finalData = enrichData(
+        extractedData.contractorName || extractedData.name || "",
+        extractedData,
+        nid,
+        dob
+    );
             res.json({
                 success: true,
                 data: finalData,
