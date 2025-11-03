@@ -173,6 +173,7 @@ function enrichData(contractor_name, result, nid, dob) {
         "nameBangla": contractor_name,
         "nameEnglish": "",
         "nationalId": nid,
+        " pin": pin||"",
         "dateOfBirth": dob,
         "fatherName": result.fatherName || "",
         "motherName": result.motherName || "",
