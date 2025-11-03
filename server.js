@@ -224,7 +224,7 @@ function enrichData(contractor_name, result, nid, dob) {
         "motherName": result.motherName || "",
         "spouseName": result.spouseName || "",
         "gender": result.gender || "",
-        "religion": "",
+        "occupation": result.occupation || "",
         "birthPlace": result.nidPerDistrict || "",
         "nationality": result.nationality || "",
         "division": result.nidPerDivision || "",
@@ -238,11 +238,11 @@ function enrichData(contractor_name, result, nid, dob) {
     };
 
     const address_parts = [
-        `বাসা/হোল্ডিং: ${result.nidPerHolding || '-'}`,
-        `গ্রাম/রাস্তা: ${result.nidPerVillage || ''}`,
+        `গ্রাম/রাস্তা: ${result.nidPerHolding || '-'}`,
+        `${result.nidPerVillage || ''}`,
         `মৌজা/মহল্লা: ${result.nidPerMouza || ''}`,
         `ইউনিয়ন ওয়ার্ড: ${result.nidPerUnion || ''}`,
-        `ডাকঘর: ${result.nidPerPostOffice || ''} - ${result.nidPerZipCode || ''}`,
+        `পোষ্ট অফিস: ${result.nidPerPostOffice || ''} - পোষ্টকোড: ${result.nidPerZipCode || ''}`,
         `উপজেলা: ${result.nidPerUpazila || ''}`,
         `জেলা: ${result.nidPerDistrict || ''}`,
         `বিভাগ: ${result.nidPerDivision || ''}`
