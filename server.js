@@ -222,7 +222,7 @@ function enrichData(contractor_name, result, nid, dob) {
         "fatherName": result.fatherName || "",
         "motherName": result.motherName || "",
         "spouseName": result.spouseName || "",
-        "gender": "",
+        "gender": result.gender || "",
         "religion": "",
         "birthPlace": result.nidPerDistrict || "",
         "nationality": result.nationality || "",
