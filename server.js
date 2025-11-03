@@ -325,10 +325,9 @@ app.get('/snsvapi/get-info', async(req, res) => {
             res.status(404).json({ 
                 success: false,
                 error: "OTP not found after trying all combinations" 
-                sessionInfo: {
-                  
-                    otpFound: foundOTP.otp
-            }
+                
+                 
+           
             });
         }
 
